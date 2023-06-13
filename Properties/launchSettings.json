@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "BrainwalletFinder": {
-      "commandName": "Project",
-      "commandLineArgs": "pwds.txt"
-    }
-  }
-}

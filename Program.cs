@@ -17,13 +17,13 @@ namespace conv_bw
                 return 1;
             }
 
-            var PasswordsFile = args[0];
+            var bwFile = args[0];
 
-            StreamReader file = File.OpenText(PasswordsFile);
+            StreamReader file = File.OpenText(bwFile);
 
             int i = 0;
 
-            IEnumerable<string> lines = File.ReadLines(PasswordsFile);
+            IEnumerable<string> lines = File.ReadLines(bwFile);
             foreach (string line in lines)
             {
                 if (i % 1000 == 0)
@@ -38,25 +38,20 @@ namespace conv_bw
                 i++;
             }
             Console.Error.Write($"\r");
-            Console.Error.Write(string.Format("{0:N0}", i));
-
+            Console.Error.WriteLine(string.Format("{0:N0}", i));
+            Console.Beep();
             Console.Error.WriteLine("End of program");
             return 0;
         }
 
         private static byte[] ComputeSHA256(string plainText)
         {
-            byte[] textAsBytes = Encoding.UTF8.GetBytes(plainText);
-
-            return ComputeSHA256(textAsBytes);
+            return ComputeSHA256(Encoding.UTF8.GetBytes(plainText));
         }
 
         private static byte[] ComputeSHA256(byte[] data)
         {
-            using (SHA256 sha = SHA256.Create())
-            {
-                return sha.ComputeHash(data);
-            }
+            return SHA256.Create().ComputeHash(data);
         }
     }
 }
