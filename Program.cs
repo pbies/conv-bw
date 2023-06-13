@@ -17,19 +17,27 @@ namespace conv_bw
                 return 1;
             }
 
-            var bwFile = args[0];
-
-            StreamReader file = File.OpenText(bwFile);
+            var lineCount = 0;
+            using (var reader = File.OpenText(args[0]))
+            {
+                while (reader.ReadLine() != null)
+                {
+                    lineCount++;
+                }
+            }
 
             long i = 0;
 
-            IEnumerable<string> lines = File.ReadLines(bwFile);
+            IEnumerable<string> lines = File.ReadLines(args[0]);
+
             foreach (string line in lines)
             {
                 if (i % 1000 == 0)
                 {
                     Console.Error.Write($"\r");
                     Console.Error.Write(string.Format("{0:N0}", i));
+                    Console.Error.Write($"/");
+                    Console.Error.Write(string.Format("{0:N0}", lineCount));
                 }
 
                 Key keyU = new Key(ComputeSHA256(line), fCompressedIn: false);
@@ -38,7 +46,9 @@ namespace conv_bw
                 i++;
             }
             Console.Error.Write($"\r");
-            Console.Error.WriteLine(string.Format("{0:N0}", i));
+            Console.Error.Write(string.Format("{0:N0}", i));
+            Console.Error.Write($"/");
+            Console.Error.WriteLine(string.Format("{0:N0}", lineCount));
             Console.Beep();
             Console.Error.WriteLine("End of program");
             return 0;

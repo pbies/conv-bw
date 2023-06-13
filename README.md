@@ -10,4 +10,4 @@
 
 	output.txt - resulting file that has: public address # private key # the same brainwallet (for reference)
 
-	Program prints progress (number of lines processed) to standar error output.
+	Program prints progress (number of lines processed) to standar error output and beeps a sound when finished.
