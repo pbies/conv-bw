@@ -21,7 +21,7 @@ namespace conv_bw
 
             StreamReader file = File.OpenText(bwFile);
 
-            int i = 0;
+            long i = 0;
 
             IEnumerable<string> lines = File.ReadLines(bwFile);
             foreach (string line in lines)
