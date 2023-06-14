@@ -27,6 +27,7 @@ namespace conv_bw
             }
 
             long i = 0;
+            decimal p;
 
             IEnumerable<string> lines = File.ReadLines(args[0]);
 
@@ -34,10 +35,8 @@ namespace conv_bw
             {
                 if (i % 1000 == 0)
                 {
-                    Console.Error.Write($"\r");
-                    Console.Error.Write(string.Format("{0:N0}", i));
-                    Console.Error.Write($"/");
-                    Console.Error.Write(string.Format("{0:N0}", lineCount));
+                    p = (decimal)i / (decimal)lineCount * (decimal)100;
+                    Console.Error.Write(string.Format("\r{0:N0}/{1:N0} ({2:N2}%)", i, lineCount, p));
                 }
 
                 Key keyU = new Key(ComputeSHA256(line), fCompressedIn: false);
@@ -45,10 +44,9 @@ namespace conv_bw
 
                 i++;
             }
-            Console.Error.Write($"\r");
-            Console.Error.Write(string.Format("{0:N0}", i));
-            Console.Error.Write($"/");
-            Console.Error.WriteLine(string.Format("{0:N0}", lineCount));
+
+            p = (decimal)i / (decimal)lineCount * (decimal)100;
+            Console.Error.WriteLine(string.Format("\r{0:N0}/{1:N0} ({2:N2}%)", i, lineCount, p));
             Console.Beep();
             Console.Error.WriteLine("End of program");
             return 0;
