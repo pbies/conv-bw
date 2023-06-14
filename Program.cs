@@ -17,7 +17,7 @@ namespace conv_bw
                 return 1;
             }
 
-            var lineCount = 0;
+            long lineCount = 0;
             using (var reader = File.OpenText(args[0]))
             {
                 while (reader.ReadLine() != null)
