@@ -14,4 +14,4 @@
 	Program prints progress (number of lines processed) to standar error output and beeps
 		a sound when finished.
 
-	ptrbsd (at) gmail
+	pikob1 (at) gmail
