@@ -1,5 +1,7 @@
 	Converter for brainwallets
 
+	https://github.com/pbies/conv-bw
+
 	Use:
 
 	conv-bw input.txt > output.txt
